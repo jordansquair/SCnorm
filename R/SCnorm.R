@@ -151,15 +151,14 @@ SCnorm <- function(Data=NULL, Conditions=NULL, OutputName=NULL, SavePDF = TRUE, 
   NORMDATA <- do.call(cbind, lapply(1:length(Levels), function(x) {NormList[[x]]$NormData}))
   
   ## plot the normalized data to screen
-  message("Plotting count-depth relationship for normalized data...")
-	
-  checkCountDepth(Data = Data, NormalizedData = NORMDATA,
-                  Conditions = Conditions, OutputName = OutputName, SavePDF = SavePDF, Tau=Tau,
-                  FilterCellProportion = FilterCellProportion, FilterExpression = FilterExpression, NCores = NCores, ditherCounts=ditherCounts)
-  
-  
-  
-  
+  if (SavePDF) {
+    message("Plotting count-depth relationship for normalized data...")
+    
+    checkCountDepth(Data = Data, NormalizedData = NORMDATA,
+                    Conditions = Conditions, OutputName = OutputName, SavePDF = SavePDF, Tau=Tau,
+                    FilterCellProportion = FilterCellProportion, FilterExpression = FilterExpression, NCores = NCores, ditherCounts=ditherCounts)
+  }
+
   if (length(Levels) > 1) {
     
     # Scaling
